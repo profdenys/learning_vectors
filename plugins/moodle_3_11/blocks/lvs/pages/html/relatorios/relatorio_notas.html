@@ -1,0 +1,254 @@
+<div style="text-align: right;">
+	<a href='{BASE_URL}/pages/relatorio_notas.php?curso={CURSO_ID}&tipo=pdf{INDIVIDUAL}' id="btnImprimirRelatorioNotasPdf">
+		<i class="fa fa-file-pdf-o"></i>
+		Exportar Para PDF
+	</a>
+	&nbsp;&nbsp;&nbsp;
+	<a href='#' id="btnImprimirRelatorioNotasCsv">
+		<i class="fa fa-file-excel-o"></i>
+		Exportar Para CSV
+	</a>
+</div>
+<p>&nbsp;</p>
+
+<div id="relatorionotas-content" clas="row">
+    <div id="region-main-box" class="col-xs-12">	
+		<table class="admintable generaltable">
+				<tr>
+					<td style="text-transform: uppercase; font-weight: bold;">
+						Curso:
+					</td>
+					<td>
+						{CURSO_LEGENDA} - {CURSO_NOME}
+					</td>
+					<td style="text-transform: uppercase; font-weight: bold;">
+						Descri&ccedil;&atilde;o:
+					</td>
+					<td>
+						{CURSO_DESCRICAO}
+					</td>
+					<td style="text-transform: uppercase; font-weight: bold;">
+						Fator &beta; médio:
+					</td>
+					<td>
+						{BETA_MEDIO} mLV
+					</td>
+				</tr>
+		</table>
+
+		<table id="tabelaNotas" class="table" border="1">
+			<thead>
+				<tr class="filters">
+					<th style="max-width:170px; min-width:170px; width:170px;">
+						<input onkeyup="filterHtmlTable()" placeholder="nome" style="width: 130px;">
+					</th>
+					<th style="max-width:110px; min-width:110px; width:110px;"
+						title="Nota">								
+						<span style="font-size: 14px">Notas das atividades</span><br/>
+					</th>
+					<th style="max-width:65px; min-width:65px; width:65px;"
+						title="Prova Final">
+						Prova final
+					</th>
+					<th style="max-width:65px; min-width:65px; width:65px;"
+						title="Média Final">
+						M&eacute;dia final
+					</th>
+					<th style="max-width:45px; min-width:60px; width:60px;">
+						Fator &beta; <br/><span style="font-size: 12px;">(mLV)</span>
+					</th>
+					<th style="max-width:100px; min-width:100px; width:100px;"
+						title="Número Total de Faltas">
+						<span style="font-size: 14px">Faltas&nbsp;</span><br/><span style="font-size: 12px;">(hA / %)</span>
+					</th>
+					<th style="max-width:75px; min-width:75px; width:75px;">
+						Situa&ccedil;&atilde;o
+					</th>
+					<th style="max-width:60px; min-width:60px; width:60px;"
+						title="Nota nos Fóruns">								
+						<span style="font-size: 14px">F&oacute;runs</span>
+					</th>
+					<!-- <td class="center" style="width: 4%;" title="Ausência Atividade Fórum">AAF</td> -->
+					<!-- <td class="center" style="width: 5%;" title="Nota nas Tarefas">NT</td> -->
+					<!-- <td class="center" style="width: 4%;" title="Ausência Atividade Tarefa">AAT</td> -->
+					<th style="max-width:50px; min-width:50px; width:50px;"
+						title="Nota nos Chats">
+						<span style="font-size: 14px">Chats</span>
+					</th>
+					<!-- <td class="center" style="width: 4%;">AAC</td> -->
+					<th style="max-width:50px; min-width:50px; width:50px;"
+						title="Nota nos Wikis">
+						<span style="font-size: 14px">Wikis</span>
+					</th>
+					<!-- <td class="center" style="width: 4%;" title="Ausência de Atividades Wiki">AAW</td>  -->
+					<th style="max-width:65px; min-width:65px; width:65px;"
+						title="Nota nos Quizzes">
+						<span style="font-size: 14px">Quizzes</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>			
+				<!-- BEGIN ALUNO -->
+				<tr class='{CLASS_ALUNO}'>
+					<td class="cell"
+						style="text-align: right; font-size: 14px; text-transform: uppercase; padding-left: 4px;">
+							{ESTUDANTE_NOME}
+					</td>
+	
+					<td class="cell"
+						style="text-align: left; font-size: 14px; padding-left: 4px;">
+						<!-- BEGIN ATIVIDADE_PRESENCIAL -->
+						<a id="relatorioPresenciaisInfo" href='relatorio_presenciais.php?curso={CURSO_ID}&usuario={ESTUDANTE_ID}' rel="modal:open"> 
+							<i class="fa fa-info-circle" title="Soma das notas de: Quiz (Pres.)"></i>
+						</a>
+						Ativ. pres:
+						{NOTA_ATIVIDADE}<br/>
+						<!-- <td class="center" style="border: 1px solid">{AUSENCIAS_ATIVIDADE}</td> -->
+						<!-- END ATIVIDADE_PRESENCIAL -->
+						<i class="fa fa-info-circle" title="Soma das notas de: Fórum + Chat + Wiki + Quiz (Dist.)"></i>
+						Ativ. dist: {NOTA_DISTANCIA}<br/>
+						<i class="fa fa-info-circle" title="Soma das notas das atividades presenciais e a distância"></i>
+						Total: <strong>{MEDIA}</strong>
+					</td>
+
+					<td class="cell">
+						<!-- BEGIN AF --> 
+						<span style='display: none;'>{NOTA_AF}</span> 
+						<input onfocus="this.style.cursor='pointer'; this.style.background='#FF9';"
+								class="limiteMaximo" 
+								style='width: 60%;'
+								type="text"
+								value='{NOTA_AF}'
+								name="nota[usuario][{ESTUDANTE_ID}]" /> 
+						<!-- END AF -->
+	
+						<!-- BEGIN AM --> - <!-- END AM -->
+					</td>
+
+					<td class="cell"
+						style="text-align: left; font-size: 14px; padding-left: 4px;">
+						<strong>{MEDIA_FINAL}</strong>
+					</td>
+
+					<td class="cell"
+						style="text-align: center; font-size: 14px; padding-left: 4px;">
+						{FATOR_BETA}<br/>
+						<img style='height: 45px; width: 45px; padding-left: 4px;'
+								src="{BASE_URL}/imgs/carinhas/moodle3/{IMAGEM_LV_ICONE}" />
+					</td>
+					
+					<td class="cell"
+						style="text-align: left; font-size: 14px; padding-left: 4px;">
+						<a target='_blank' href='relatorio_faltas.php?curso={CURSO_ID}&usuario={ESTUDANTE_ID}'> 
+							{TOTAL_FALTAS} %
+						</a>
+					</td>
+					<td class="cell"
+						style="text-align: left; font-size: 14px; padding-left: 4px;">
+						{SITUACAO}
+					</td>
+
+					<!-- BEGIN ATIVIDADE_DISTANCIA -->
+					<td class="cell"
+						style="text-align: left; font-size: 14px; padding-left: 4px;">
+						<a target='{TARGET_ATIVIDADE}'
+							href='relatorio_distancia.php?curso={CURSO_ID}&usuario={ESTUDANTE_ID}&atividade={NOME_ATIVIDADE}'>
+							{NOTA_ATIVIDADE}
+							<i class="fa fa-search"></i>
+						</a>
+					</td>
+					<!-- <td class="center" style="border: 1px solid">{AUSENCIAS_ATIVIDADE}</td> -->
+					<!-- END ATIVIDADE_DISTANCIA -->
+			
+				</tr>
+				<!-- END ALUNO -->
+	
+				<!-- BEGIN SALVAR_NOTAS_AF -->
+				<tr>
+					<td colspan="12"></td>
+					<td class="center">
+						<a href="#" onclick="document.formaf.submit();">Salvar</a>
+					</td>
+					<td colspan="2"></td>
+				</tr>
+				<!-- END SALVAR_NOTAS_AF -->			
+			</tbody>
+		</table>
+
+		<!-- BEGIN INIT_FORM_AF
+		<form name="formaf" action='{FORM_ACTION}' method="post">
+			<table id="tabelaNotas" class="table table-striped" border="0" style="margin-top: 1em; margin-bottom: 1em;">
+			</table>
+		</form>
+		END END_FORM_AF -->
+
+		<table border='3' id="tabelaNotasLegenda">
+			<thead>
+				<tr>
+					<th colspan="4" style='font-size: 14px; font-style: italic;'>
+						LEGENDAS
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>AUSÊNCIAS DE ATIVIDADES</td>
+					<td>SITUAÇÃO</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">
+						<ul>
+							<li>AAP - Aus&ecirc;ncia Ativ.e Presencial</li>
+							<li>AAF - Aus&ecirc;ncia F&oacute;rum</li>
+							<li>AAC - Aus&ecirc;ncia Quiz</li>
+							<li>AAT - Aus&ecirc;ncia Tarefa</li>
+							<li>AAW - Aus&ecirc;ncia Wiki</li>
+						</ul>
+					</td>
+					<td style="vertical-align: top;">
+						<ul>
+							<li>C - Cursando</li>
+							<li>AM - Aprovado por M&eacute;dia</li>
+							<ul class="square">
+								<li>M&eacute;dia ≥ <strong><font color=blue>{MEDIA_CURSO}</font></strong></li>
+							</ul>
+							<li>AMF - Aprovado por M&eacute;dia Final</li>
+							<ul class="square">
+								<li>M&eacute;dia Final ≥ <strong><font color=blue>{MEDIA_APROVACAO_AF_CURSO}</font></strong></li>
+							</ul>
+							<li>AF - Aluno na Final</li>
+							<ul class="square">
+								<li><strong><font color=blue>{MEDIA_AF_CURSO}</font></strong> ≤ M&eacute;dia < <strong><font color=blue>{MEDIA_CURSO}</font></strong></li>
+							</ul>
+							<li>R - Reprovado por M&eacute;dia</li>
+							<ul class="square">
+								<li>M&eacute;dia &lt; <strong><font color="red">{MEDIA_AF_CURSO}</font></strong></li>
+							</ul>
+							<li>RMF - Reprovado por M&eacute;dia Final</li>
+							<ul class="square">
+								<li>M&eacute;dia Final &lt; <strong><font color="red">{MEDIA_APROVACAO_AF_CURSO}</font></strong></li>
+							</ul>
+							<li>RF - Reprovado por faltas</li>
+							<ul class="square">
+								<li>NTF &gt; <strong><font color="red">{PERCENTUAL_FALTAS_CURSO}</font></strong> % CH</li>
+							</ul>
+							<li>SC - Segunda Chamada (Falta em Atividade Presencial)</li>
+						</ul>
+					</td>
+					<td style="vertical-align: top;">
+						<img style='height: 188; width: 328;' src='{BASE_URL}/imgs/tabelabeta.png' alt='' />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- BEGIN PREPARAR_EXPORTACAO -->
+		<a href='#' style='float: right;'
+			onclick="if(confirm('Antes de prosseguir com essa ação, certifique-se que todas as notas das atividades a distância e presenciais, incluindo segundas chamadas, bem como frequ&ecirc;ncias, foram devidamente lan&ccedil;adas .')) alert('Notas prontas para exportação !')">
+			Preparar exportação para o bloco de notas Moodle.</a>
+		<br />
+		<!-- END PREPARAR_EXPORTACAO -->
+
+	</div>
+</div>

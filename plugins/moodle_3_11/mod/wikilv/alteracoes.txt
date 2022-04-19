@@ -1,0 +1,17 @@
+wikilveditor.php
+wikilv.php > languages
+wikilv/editors/wikilv/images/ed_nowikilv.gif
+
+
+
+sobre glossários
+
+
+tem que criar GlossarioLv extends AtividadeLV
+
+e 
+
+
+GlossariosLV extends GerenciadorNotasLvDistancia...
+
+ o erro no glossário é que ele está usando setModulo(GlossarioLv..) passando um GerenciadorLV e não uma AtividadeLv

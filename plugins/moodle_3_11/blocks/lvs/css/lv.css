@@ -1,0 +1,34 @@
+#tabelaNotas{
+    border-color: #808080;
+}
+#tabelaNotas thead th {
+    text-align: left; 
+    font-size: 14px;
+    padding-left: 4px;
+    background-color: #b9c9fe;
+    border-color: #808080;
+}
+#tabelaNotas tr:nth-child(even) {background: #CCC; border-color: #808080; }
+#tabelaNotas tr:nth-child(odd) {background: #FFF; border-color: #808080;}
+#tabelaNotas td{
+    border-color: #808080;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#tabelaNotasLegenda{
+    border-color: #808080;
+}
+#tabelaNotasLegenda thead th {
+    text-align: left; 
+    font-size: 14px;
+    padding-left: 4px;
+    background-color: #b9c9fe;
+    border-color: #808080;
+}
+#tabelaNotasLegenda td{
+    text-align: left; 
+    font-size: 14px;
+    border-color: #808080;
+    padding-left: 4px;
+    padding-right: 4px;
+}

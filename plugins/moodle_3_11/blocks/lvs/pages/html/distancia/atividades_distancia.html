@@ -1,0 +1,115 @@
+<form id='lvs_config_distancia' name='form1' target='_self' method='POST' action='#'>
+	<input id='lvs_curso_id' type='hidden' value={COURSE_ID} /> 
+
+	<table class="generaltable boxaligncenter">
+		<thead>
+			<tr>
+				<th scope="col" style="text-align:center;" class="header">Nome</th>
+				<th scope="col" style="text-align:center;" class="header">Descrição</th>
+				<th scope="col" style="text-align:center;" class="header">Porcentagem</th>
+				<th scope="col" style="text-align:center;" class="header">Etapa</th>
+				
+				<!-- BEGIN COLUNA_EXIBIRLV -->
+				<th scope="col" style="text-align:center;" class="header">Exibir LV</th>
+				<!-- END COLUNA_EXIBIRLV -->
+				
+				<!-- BEGIN COLUNA_ACOES -->
+				<th scope="col" style="text-align:center;" class="header">Ações</th>
+				<!-- END COLUNA_ACOES -->
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN ATIVIDADES_LVS -->
+			<tr class="r0">
+				<td colspan='6' style="text-align:center; text-transform: uppercase" class="cell c1">
+					<strong>{CONJUNTO_ATIVIDADES}</strong>
+				</td>
+			</tr>
+			<!-- BEGIN ATIVIDADE_LV -->
+			<tr>
+				<td style='display:none;'>
+					<input type='hidden' name='atividade[{DISTANCIA_TIPO}][{CONTADOR}][id]' value='{DISTANCIA_ID}'/>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:justify;">
+					{DISTANCIA_NOME}
+				</td>
+				<td style="text-align:justify;">
+					{DISTANCIA_DESCRICAO}
+				</td>
+				<td style="text-align:justify;">
+					<input type="text" name="atividade[{DISTANCIA_TIPO}][{CONTADOR}][porcentagem]" value="{DISTANCIA_PORCENTAGEM}" class='lvs_porcentagem' style="width:40px" required='1' {READONLY}/>
+					&nbsp;%
+				</td>
+				<td style="text-align:justify;">
+					<select name="atividade[{DISTANCIA_TIPO}][{CONTADOR}][etapa]" class="select" {DISABLED}>
+						<option value="1" {DISTANCIA_ETAPA1}>1</option>
+						<!-- TODO RODRIGO: IMPLEMENTAR OUTRAS ETAPAS
+						<option value="2" {DISTANCIA_ETAPA2}>2</option>
+						<option value="3" {DISTANCIA_ETAPA3}>3</option>
+						<option value="4" {DISTANCIA_ETAPA4}>4</option>
+						<option value="5" {DISTANCIA_ETAPA5}>5</option>
+						<option value="6" {DISTANCIA_ETAPA6}>6</option>
+						<option value="7" {DISTANCIA_ETAPA7}>7</option>
+						<option value="8" {DISTANCIA_ETAPA8}>8</option>
+						<option value="9" {DISTANCIA_ETAPA9}>9</option>
+						<option value="10" {DISTANCIA_ETAPA10}>10</option>
+                        -->
+					</select>
+				</td>
+				
+				<!-- BEGIN EXIBIRLV -->
+				<td style="text-align:center;">
+					<input type="checkbox" name="atividade[{DISTANCIA_TIPO}][{CONTADOR}][exibir]" value="1" {CHECKED} {READONLY}/>
+				</td>
+				<!-- END EXIBIRLV -->
+				
+				<!-- BEGIN ACOES -->
+				<td style="text-align:center;" class="cell c5 lastcol">
+					<span class="commands">
+						<a href="{BASEURL}/course/mod.php?update={DISTANCIA_CM}&amp;sesskey={SESSKEY}">
+							Atualizar
+						</a>
+					</span><br/><br/>
+					<span class="commands">
+						<a href="{BASEURL}/course/mod.php?delete={DISTANCIA_CM}&amp;sesskey={SESSKEY}">
+							Excluir
+						</a>
+					</span>
+				</td>
+				<!-- END ACOES -->
+				
+			</tr>
+			<!-- END ATIVIDADE_LV -->
+			<!-- END ATIVIDADES_LVS -->
+			
+			<!-- BEGIN NENHUMA_ATIVIDADE -->
+			<tr class="r0">
+				<td colspan='6' style="text-align:center;" class="cell c1"><strong>Nenhuma atividade a dist&acirc;ncia para este curso</strong></td>
+			</tr>
+			<!-- END NENHUMA_ATIVIDADE -->
+			
+			<!-- BEGIN GRAVAR -->
+			<tr>
+				<td class="header" colspan="5">
+					<span style='float: left'>
+						Soma das porcentagens:&nbsp;
+					</span>
+					<span id="lvs_soma_porcentagens" style="font-weight: bold !important;">
+						{SOMA_PORCENTAGENS}
+					</span>
+					&nbsp;%
+					<span style='float: right; color: red; font-weight: bold;' id="lvs_msg"></span>
+				</td>	
+				<td  class="header" style="text-align:center;">
+					<input type='submit' id='lvs_config_distancia_submit' name='Salvar' value='Salvar' />
+				</td>
+			</tr>
+			<!-- END GRAVAR -->
+			
+		</tbody>
+	</table>
+
+	<!-- &nbsp <input id='lvs_voltar' name='voltar' type='button' value='Voltar' /> -->
+</form>
